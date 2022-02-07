@@ -3,9 +3,9 @@ import unittest
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
 
 # LOCATORS
 LOGIN_BUTTON = (By.XPATH, "//*[contains(text(), 'Log In')]")
@@ -40,7 +40,7 @@ SSN_DATA = "9999"
 TOTAL_ANNUAL_INCOME_DATA = "10,000"
 NON_TAXABLE_INCOME_DATA = "9,000"
 LOGIN_PAGE_TITLE = "Log In to My Account | American Express US"
-PAGE_RESULT_MESSAGE = "You pre-qualify for a special Card offer! apply now."
+PAGE_RESULT_MESSAGE = "You pre-qualify for a special Card offer! Apply now."
 
 
 class Americanexpress(unittest.TestCase):
@@ -146,7 +146,8 @@ class Americanexpress(unittest.TestCase):
         browser.find_element(*TOTAL_ANNUAL_INCOME).send_keys(TOTAL_ANNUAL_INCOME_DATA)
         browser.find_element(*NON_TAXABLE_INCOME).send_keys(NON_TAXABLE_INCOME_DATA)
         browser.find_element(*VIEW_MY_CARD_OFFERS_BTN).click()
-        assert PAGE_RESULT_MESSAGE, "You pre-qualify for a special Card offer! Apply now"
+        message = browser.find_element(*RESULT_MESSAGE).text
+        assert message == PAGE_RESULT_MESSAGE, "Success result message  isn't appeared"
         time.sleep(2)
 
     def tearDown(self):
