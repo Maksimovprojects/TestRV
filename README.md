@@ -1,9 +1,8 @@
 # TestRV
 I divided task on 7 independent test cases.
 Each test case is isolated and does not rely on each other.
-As the environment, you have to install: python, selenium, terminal, or IDE, unit test is enough to run tests.
+As the environment, you have to install by pip package installer: python, selenium, terminal, or IDE, unittest or pytest, 
 I didn't use any 'fixtures' to simplify running, used simple construction without wrapping into try/except/finally, without handling Exceptions
-
 
 
 1. Check that the AMEX banner is displayed at the top of the page.
